@@ -1,0 +1,59 @@
+.top-content
+  .inner-bg
+    .container
+      .row
+        .col-sm-8.col-sm-offset-2.text
+          h1 Users
+      .row
+        .row
+          .col-lg-12
+            .main-box.clearfix
+              .table-responsive
+                table.table.user-list
+                  thead
+                    tr
+                      th
+                        span First name
+                      th
+                        span Last name
+                      th
+                        span Email
+                      th
+                        span Address
+                      th
+                        span Address2
+                      th.text-center Action
+                  tbody
+                    -var ob = JSON.parse(stats)
+                      -for(var prop in ob.Users)
+                        tr
+                          td
+                            - if(ob.Users[prop].profile_pic != '') {
+                            | <p><img class="pull-left img_cl" src='images/profile_pic/#{ob.Users[prop].profile_pic}')}'></p>
+                            - }
+                            - if(ob.Users[prop].profile_pic == '') {
+                            | <p><img class="pull-left img_cl" src='images/profile_pic/user-profile.png'></p>
+                            - }
+                            a.user-link.pull-left(href='view?id=#{ob.Users[prop].id}') #{ob.Users[prop].first_name}
+                          td
+                            a.user-link.pull-left(href='view?id=#{ob.Users[prop].id}') #{ob.Users[prop].last_name}
+                          td
+                            a.user-link.pull-left(href='view?id=#{ob.Users[prop].id}') #{ob.Users[prop].email}
+                          td
+                            a.user-link.pull-left(href='view?id=#{ob.Users[prop].id}') #{ob.Users[prop].address1}
+                          td
+                            a.user-link.pull-left(href='view?id=#{ob.Users[prop].id}') #{ob.Users[prop].address2}
+                          td(style='width: 20%;')
+                            a.table-link(href='view?id=#{ob.Users[prop].id}')
+                              span.fa-stack
+                                i.fa.fa-square.fa-stack-2x
+                                i.fa.fa-search-plus.fa-stack-1x.fa-inverse
+                            a.table-link(href='edit?id=#{ob.Users[prop].id}')
+                              span.fa-stack
+                                i.fa.fa-square.fa-stack-2x
+                                i.fa.fa-pencil.fa-stack-1x.fa-inverse
+                            a.table-link.danger(href='delete?id=#{ob.Users[prop].id}')
+                              span.fa-stack
+                                i.fa.fa-square.fa-stack-2x
+                                i.fa.fa-trash-o.fa-stack-1x.fa-inverse
+              a.btn(href='/index', type='submit') Add More User                  

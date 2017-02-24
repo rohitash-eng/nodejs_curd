@@ -1,0 +1,37 @@
+.top-content
+  .inner-bg
+    .container
+      .row
+        .col-sm-8.col-sm-offset-2.text
+          -var ob = JSON.parse(userInfo)
+          h1 Users
+      .row
+        .col-md-6.col-md-offset-3.text-center
+          .main-box.clearfix
+            .profile-header
+              h3
+                span User Detail
+            .form-bottom
+              .form-group
+                - if(ob[0].profile_pic != '') {
+                | <p><img class="img_cl1" src='images/profile_pic/#{ob[0].profile_pic}')}'></p>
+                - }
+                - if(ob[0].profile_pic == '') {
+                | <p><img class="pull-left img_cl" src='images/profile_pic/user-profile.png'></p>
+                - }
+                label.sr-only(for='form-first-name') First name
+                input#form-first-name.form-first-name.form-control(type='text', name='form-first-name', value='#{ob[0].first_name}', placeholder='First name...', disabled='')
+              .form-group
+                label.sr-only(for='form-last-name') Last name
+                input#form-last-name.form-last-name.form-control(type='text', name='form-last-name', value='#{ob[0].last_name}', placeholder='Last name...', disabled='')
+              .form-group
+                label.sr-only(for='form-email') Email
+                input#form-email.form-email.form-control(type='text', name='form-email', value='#{ob[0].email}', placeholder='Email...', disabled='')
+              .form-group
+                label.sr-only(for='form-about-yourself') Address
+                textarea#form-about-yourself.form-about-yourself.form-control(name='address', value='#{ob[0].address1}', placeholder='Address...', disabled='disabled') #{ob[0].address2}
+              .form-group
+                label.sr-only(for='form-about-yourself') Other Address
+                textarea#form-about-yourself.form-about-yourself.form-control(placeholder='Other Address...', name='address2') #{ob[0].address2}
+              a.btn(href='listusers')
+                | Back
